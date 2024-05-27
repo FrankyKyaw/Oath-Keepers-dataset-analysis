@@ -134,12 +134,6 @@ def generate_word_cloud(text):
     ax.axis("off")
     st.pyplot(fig)
 
-def export_csv(user_counter, output_file):
-    with open(output_file, 'w', newline='', encoding='utf8') as file:
-        writer = csv.writer(file)
-        writer.writerow(['User', 'Count'])
-        for user, count in user_counter.items():
-            writer.writerow([user, count])
 
 def main():
     input_path = r"Oath Keepers.sbd\Oath Keepers.sbd"
@@ -184,7 +178,7 @@ def main():
     st.subheader("Most Common Words in Oath Keepers Support email address")
     all_words1 = parse_messages('all_extracted_emails\oksupport.txt')
     word_counts1 = Counter(all_words1)
-    export_csv(word_counts1, 'word_counts.csv')
+
     common_words1 = word_counts1.most_common(20)
     st.table(pd.DataFrame(common_words1, columns=['Word', 'Count']))
     st.subheader("Word Cloud of Oath Keepers Support email address")
